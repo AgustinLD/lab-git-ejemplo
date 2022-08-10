@@ -1,0 +1,198 @@
+1. git version
+    Se utiliza para ver la version de git.
+
+2. git config --global user.name "mi nombre"
+    Se utiliza para registrar nuevo usuario asociado a git
+    NOTA: No colocar como nombre de usuario el correo de su cuenta de Github, podria traer problemas a futuro
+
+3. git config --global user.email "myemail@example.com"
+    Es recomendable utilizar el correo asociado a Github
+
+4. git help
+    Ayuda sobre los comando.
+
+5. git init
+    Inicia un nuevo repositorio creaando la carpeta oculta .git.
+
+6. git status
+    Se utiliza para ver que archivos no han sido registrados
+
+7. git add .
+    Se utiliza para agregar todos los archivos para que este pendiente de los cambios
+
+8. git commit -m "primer commit"
+    Se utiliza para crear commit (fotografia del proyecto en ese momento)
+
+9. git log
+    Se utiliza para muestrar la lista de commit del mas reciente al mas angtiguo
+
+N O T A : 
+En resumidas cuentas nosotros realizamos cambios en nuestros archivos, 
+el comando status verificará que archivos han sidos modificados. 
+Cuando deseemos registrar esos cambios tendremos que agregarlos con add . 
+así ya estará listo para poder hacer un commit. El commit realiza la copia
+de ese instante para poder volver en el tiempo si es que es necesario.
+
+TRUCOS
+
+1. git log --oneline
+    Sirve para muestrar en una linea los commit realizados
+
+2. git log --oneline --decorate --all --graph
+    Sirve para muestrar en una linea los commit realizados pero mas elegante.
+
+3. git status -s
+    Sirve para solo muestrar los archivos modificados.
+
+N O T A :
+Diferencias entre -- y - 
+--decorate : hace referencia a una palabra.
+-s hace referencia al comando o a varios comandos, -sa serían dos comandos diferentes
+
+4. git status -s -b : Sirve para ver informacion de la rama maestra o brench master en ingles
+   git status -sb : Sirve para hacer lo mismo que el comando anterior.
+
+
+CREANDO ALIAS GLOBALES:
+Los alias nos sirven para crear atajos de comandos, podemos guardar diferentes alias de forma global
+y quedarán guardados en la configuración de git.
+
+1. git config --global alias.lg "log --oneline --decorate --all --graph"
+    Sirve para ver el archivos config con los alias creados
+
+VIM es el editor de codigo en la linea de comandos.
+
+N O T A :
+Salir del modo edicion "Vim":
+Para salir del modo edición de la líneas de comando precionar :q, 
+en caso de realizar algún cambio sin guardar escribir :qa
+:q! también sirve para salir sin guardar
+
+2. git config --global -l
+    Sirve para modo lectura sin poder modificar
+
+3. git commit -am "más comandos agregados"
+    Sirve para realizar el add . y commit mas mensaje al mismo tiempo.
+
+4. git commit --amend
+    Sirve para editar un commit, como por ej: el mensaje.
+
+N O T A :
+
+Trucos de editor Vim
+
+i para comenzar a editar
+esc para salir del modo edicion
+wq para guardar y salir
+ql para salir sin guardar cambios
+
+
+VIAJES A TRAVES DE LOS COMMIT
+
+Vamos a conocer como podemos movernos entre los diferentes commit que tengamos registrados, 
+supongamos que tenemos los siguientes commit:
+
+f82f457 : (HEAD -> master) mas comandos agregados
+f52f3da : nuevos comandos en fundamentos.md
+e4ab8af : mi primer commit
+
+1. git reset --mixed f52f3da
+   Sirve para viajar al commit en especifico f52f3da
+
+2. git reset --hard f52f3da
+     Sirve para viajar al commit en especifico f52f3da y eliminar los cambios futuros.
+
+3. git reflog
+    Sirve para muestrar todos los cambios incluso si borramos los commit.
+
+4. git reset --hard f52f3da
+    Sirve para viajar al commit en especifico f52f3da y podemos restaurar los archivos.
+
+
+5. Si no hicimos un commit pero aún así queremos revertir los cambios en un archivo específico
+   podríamos utilizar el siguiente comando:
+
+   > git checkout -- nombreArchivo.conExtensión
+
+6. Si deseamos destruir todos los cambios sin haber realizado un commit podemos utilizar:
+
+    > git reset --hard
+
+Para mayor información visite: Click aquí : 
+https://git-scm.com/book/es/v2/Herramientas-de-Git-Reiniciar-Desmitificado
+
+
+7. Renombrar archivos
+    Puede que queramos renombrar un archivo, es recomendable hacerlo directamente en la línea de comandos
+    para registrar los cambios con git.
+
+    // Cambiar nombre
+    > git mv nombreOriginal.vue nombreNuevo.vue
+
+    Recuerden hacer el commit para registrar los cambios en git.
+
+8. Eliminar archivos
+    //Cambiar nombre
+    git rm nombreArchivo.vue
+
+    También recordar hacer el commit para salgar cambios en git
+
+9. Ignorando Archivos
+    Para no hacer seguimiento de carpetas o archivos, debemos crear el siguiente archivo:
+
+    .gitignore
+    
+    Su estructura de ejemplo sería así:
+    
+    arhivo.js // Ignora el archivo en cuestion
+    *.js // Ignora todos los arhivos con extensión .js
+    node_modules/ //Ignora toda la carpeta
+
+
+RAMAS O BRANCH
+    Hasta el momento solo hemos trabajado en la rama "master" pero puede que necesitemos 
+    crear diferentes ramas para los seguimientos de git.
+
+1. Crea una nueva rama
+    > git branch nombreRama
+
+2. Nos muestra en que rama estamos
+    > git branch
+
+3. Nos movemos a la nueva rama
+    > git checkout nombreRama
+
+Podemos unir la rama master con la nueva, para eso tenemos que estar en la master para ejecutar
+el siguiente comando:
+
+4. Nos movemos a la nueva rama
+    > git merge nombreRama
+
+5. Eliminar una rama
+    > git branch -d nombreRama
+
+
+N O T A :
+
+Atajos: 
+    Podemos utilizar git checkout -b nuevaRama para crear la nuevaRama y viajar a ella.
+
+Tags:
+    Con los tags podemos hacer versiones de nuestro proyecto.
+
+1. Crear un tags
+    > git tag versionAlpha -m "versión alpha"
+
+2. Listar tags
+    > git tag
+
+3. Borrar tags
+    > git tag -d nombreTags
+
+4. Hacer una versión en un commit anterior ej: f52f3da
+    > git tag -a nombreTag f52f3da -m "version alpha"
+
+5. Mostrar información del tag
+    > git show nombreTag
+
+
