@@ -36,7 +36,7 @@ de ese instante para poder volver en el tiempo si es que es necesario.
 TRUCOS
 
 1. git log --oneline
-    Sirve para muestrar en una linea los commit realizados
+    Sirve para muestra en una linea los commit realizados
 
 2. git log --oneline --decorate --all --graph
     Sirve para muestrar en una linea los commit realizados pero mas elegante.
@@ -194,5 +194,20 @@ Tags:
 
 5. Mostrar información del tag
     > git show nombreTag
+
+
+Nota:
+Una vez creado un nuevo repositorio Github le muestra el siguiente comando:
+    > git remote add origin https://github.com/AgustinLD/lab-git-ejemplo.git
+
+    Este le dice a github que ya esta lista para poder usar su repositorio remote. 
+    Sea para crear un identificador de todo nuestros archivos.
+
+
+git push -u origin master
+Sirve para autorizar el envio remote de los data a guardar..
+
+
+
 
 
